@@ -1,0 +1,34 @@
+name: Verify Android APK
+on:
+  release:
+    types: [published]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ github.event.release.tag_name }}
+    steps:
+      - name: Download APK and checksum from this release
+        run: gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern '*.apk' --pattern '*.apk.sha256' --dir apk
+      - name: Verify file integrity
+        working-directory: apk
+        run: sha256sum --check *.apk.sha256
+      - name: Verify Android signatures
+        run: |
+          signer=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name apksigner -type f | sort -V | tail -n 1)
+          test -n "$signer"
+          "$signer" verify --verbose --print-certs apk/*.apk > apk/signature.txt
+          cat apk/signature.txt
+          # Same public certificate as build 3: users can install an update.
+          grep -F 'certificate SHA-256 digest: ec51cb4c0b48be8ab9edf00e8adc175d867e403ce199cac2afa951ff9d38923d' apk/signature.txt
+      - name: Verify native GPS job permissions
+        run: |
+          aapt=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name aapt -type f | sort -V | tail -n 1)
+          "$aapt" dump permissions apk/*.apk > apk/permissions.txt
+          grep -F "android.permission.RECEIVE_BOOT_COMPLETED" apk/permissions.txt
+          grep -F "android.permission.FOREGROUND_SERVICE_LOCATION" apk/permissions.txt
+          grep -F "android.permission.ACCESS_FINE_LOCATION" apk/permissions.txt

@@ -1,0 +1,80 @@
+name: Android recording smoke test
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release containing the signed APK to test
+        required: true
+        default: v1.0.0-beta.3
+      api_level:
+        description: Android API level
+        required: true
+        default: '36'
+      apk_url:
+        description: Optional EAS artifact URL, to test a build before publishing
+        required: false
+permissions:
+  contents: read
+jobs:
+  recording:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.release_tag }}
+      API_LEVEL: ${{ inputs.api_level }}
+      APK_URL: ${{ inputs.apk_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the signed release APK
+        run: |
+          if [ -n "$APK_URL" ]; then
+            case "$APK_URL" in https://expo.dev/artifacts/eas/*.apk) ;; *) exit 1 ;; esac
+            mkdir -p apk
+            curl --fail --location --output apk/app.apk "$APK_URL"
+          else
+            gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern '*.apk' --dir apk
+          fi
+      - name: Verify update signing certificate
+        run: |
+          signer=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name apksigner -type f | sort -V | tail -n 1)
+          mkdir -p test-results/android
+          "$signer" verify --verbose --print-certs apk/*.apk > test-results/android/signature.txt
+          grep -F 'certificate SHA-256 digest: ec51cb4c0b48be8ab9edf00e8adc175d867e403ce199cac2afa951ff9d38923d' test-results/android/signature.txt
+          sha256sum apk/*.apk > test-results/android/checksum.txt
+      - name: Prepare Android emulator
+        run: |
+          export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+          export ANDROID_USER_HOME="$RUNNER_TEMP/apex-android"
+          export ANDROID_EMULATOR_HOME="$ANDROID_USER_HOME"
+          export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
+          mkdir -p "$ANDROID_AVD_HOME"
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+          sudo chmod 666 /dev/kvm
+          mkdir -p test-results/android
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > test-results/android/sdk-licenses.log 2>&1 || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-${API_LEVEL};google_apis;x86_64" "emulator" > test-results/android/sdk-install.log 2>&1 || { cat test-results/android/sdk-install.log; exit 1; }
+          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force --name apex-test --path "$ANDROID_AVD_HOME/apex-test.avd" --package "system-images;android-${API_LEVEL};google_apis;x86_64" --device pixel_6
+          "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" list avd
+          test -f "$ANDROID_AVD_HOME/apex-test.ini"
+          adb start-server
+          "$ANDROID_HOME/emulator/emulator" -avd apex-test -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -gpu swiftshader_indirect -feature -Vulkan -skin 480x960 -memory 2048 -cores 2 -camera-back none -camera-front none > test-results/android/emulator.log 2>&1 &
+          timeout 180 adb wait-for-device || { tail -100 test-results/android/emulator.log; exit 1; }
+          timeout 360 bash -c 'until adb shell getprop sys.boot_completed | grep -q 1; do sleep 2; done' || { adb logcat -d > test-results/android/boot-logcat.txt; tail -50 test-results/android/boot-logcat.txt; exit 1; }
+          adb shell wm size 375x812
+          adb shell wm density 160
+          adb shell settings put system font_scale 1.15
+          adb shell settings put global window_animation_scale 0
+          adb shell settings put global transition_animation_scale 0
+          adb shell settings put global animator_duration_scale 0
+          adb shell input keyevent 82
+      - name: Exercise fresh install and GPS recording
+        run: |
+          python3 -m pip install uiautomator2==3.6.0
+          python3 scripts/android-recording-smoke.py apk/*.apk
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-recording-${{ inputs.api_level }}-${{ github.run_id }}
+          path: test-results/android
+          retention-days: 7

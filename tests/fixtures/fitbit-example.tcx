@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic test activity. These are not a person's ride or health data. -->
+<TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:ns3="http://www.garmin.com/xmlschemas/ActivityExtension/v2">
+  <Activities><Activity Sport="Biking"><Id>2026-10-10T08:00:00Z</Id>
+    <Lap StartTime="2026-10-10T08:00:00Z"><TotalTimeSeconds>50</TotalTimeSeconds><DistanceMeters>600</DistanceMeters>
+      <Track>
+        <Trackpoint><Time>2026-10-10T08:00:00Z</Time><Position><LatitudeDegrees>18.5</LatitudeDegrees><LongitudeDegrees>73</LongitudeDegrees></Position><AltitudeMeters>100</AltitudeMeters><HeartRateBpm><Value>110</Value></HeartRateBpm></Trackpoint>
+        <Trackpoint><Time>2026-10-10T08:00:10Z</Time><Position><LatitudeDegrees>18.5</LatitudeDegrees><LongitudeDegrees>73.001</LongitudeDegrees></Position><AltitudeMeters>104</AltitudeMeters><Extensions><ns3:TPX><ns3:Speed>10</ns3:Speed></ns3:TPX></Extensions></Trackpoint>
+        <Trackpoint><Time>2026-10-10T08:00:20Z</Time><Position><LatitudeDegrees>18.5005</LatitudeDegrees><LongitudeDegrees>73.002</LongitudeDegrees></Position><AltitudeMeters>108</AltitudeMeters></Trackpoint>
+        <Trackpoint><Time>2026-10-10T08:00:30Z</Time><Position><LatitudeDegrees>18.5015</LatitudeDegrees><LongitudeDegrees>73.0025</LongitudeDegrees></Position><AltitudeMeters>110</AltitudeMeters></Trackpoint>
+        <Trackpoint><Time>2026-10-10T08:00:40Z</Time><Position><LatitudeDegrees>18.5025</LatitudeDegrees><LongitudeDegrees>73.003</LongitudeDegrees></Position><AltitudeMeters>112</AltitudeMeters></Trackpoint>
+        <Trackpoint><Time>2026-10-10T08:00:50Z</Time><Position><LatitudeDegrees>18.503</LatitudeDegrees><LongitudeDegrees>73.004</LongitudeDegrees></Position><AltitudeMeters>114</AltitudeMeters></Trackpoint>
+      </Track>
+    </Lap><Notes>QA synthetic TCX ride</Notes>
+  </Activity></Activities>
+</TrainingCenterDatabase>

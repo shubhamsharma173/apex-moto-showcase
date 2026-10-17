@@ -1,0 +1,68 @@
+{
+  "buildId": "1c10e778-b99e-47ed-af17-14b51ed5c69b",
+  "buildUrl": "https://expo.dev/accounts/shubhamsharma173/projects/apex-moto/builds/1c10e778-b99e-47ed-af17-14b51ed5c69b",
+  "downloadUrl": "https://expo.dev/artifacts/eas/0cTR1KQKRYC0t__tWK1qxtuGzeNFkYzcMGXi0ZPh0PU.apk",
+  "appSourceCommit": "f510661f4141472d6ac4034c1b4c0f220b579a50",
+  "bytes": 161152615,
+  "sha256": "0a2dcb717074280fe9952ae86c15b0870b4ffb05f003cc201401dbfcd264b196",
+  "lockfileSha256": "acce46d9cc6c70ae9298cbb11be0b77f8156449bca52ce98c062d68efaaacba9",
+  "inspection": {
+    "package": "com.apexmoto.app",
+    "version": "1.0.0",
+    "versionCode": "4",
+    "sdk": {
+      "@android:minSdkVersion": "24",
+      "@android:targetSdkVersion": "36"
+    },
+    "debuggable": "false",
+    "permissions": [
+      "android.permission.ACCESS_BACKGROUND_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_LOCATION",
+      "android.permission.INTERNET",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.SYSTEM_ALERT_WINDOW",
+      "android.permission.VIBRATE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_WIFI_STATE",
+      "android.permission.ACTIVITY_RECOGNITION",
+      "com.apexmoto.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "nativeArchitectures": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "embeddedBundle": true,
+    "bundledFonts": "all 5 UI fonts and Ionicons verified by hash",
+    "zipIntegrity": "passed",
+    "mapLibreLibraries": [
+      "lib/arm64-v8a/libmaplibre.so",
+      "lib/armeabi-v7a/libmaplibre.so",
+      "lib/x86/libmaplibre.so",
+      "lib/x86_64/libmaplibre.so"
+    ]
+  },
+  "deviceTestStatus": "pending physical Realme Narzo 30 retest",
+  "nativeCrashRegression": {
+    "androidApi": 31,
+    "baselineBuild": 3,
+    "baselineResult": "Native crash and restart loop reproduced: persisted GPS job missing RECEIVE_BOOT_COMPLETED",
+    "firstFixedResult": "Permission grant and GPS delivery survived with empty crash buffer; full flow incomplete because of stale UI coordinates in test harness",
+    "verifiedResult": "passed: fresh install, permission grant, synthetic GPS delivery, 10 seconds backgrounded, pause/resume, finish and save",
+    "nativeCrashBufferBytes": 0,
+    "locationServiceIsForeground": true
+  },
+  "signatureVerification": {
+    "status": "passed",
+    "tool": "Android SDK apksigner",
+    "certificateSha256": "ec51cb4c0b48be8ab9edf00e8adc175d867e403ce199cac2afa951ff9d38923d",
+    "matchesBuild3Certificate": true
+  },
+  "publicationNotice": "Historical private-development build record, retained for provenance. Original private GitHub URLs omitted. No APK contents or original checks were rerun for this public source snapshot."
+}

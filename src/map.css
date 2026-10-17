@@ -1,0 +1,30 @@
+.maplibregl-ctrl-attrib {
+  background: #121a18ee !important;
+  color: #a6b2aa !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: #d4ded3 !important;
+}
+.maplibregl-ctrl-attrib-button {
+  filter: invert(1);
+}
+.maplibregl-ctrl-group {
+  background: #1a2320;
+}
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+.maplibregl-ctrl-group button + button {
+  border-color: #344b3d;
+}
+:root {
+  color-scheme: dark;
+  background: #0b100f;
+}
+* {
+  scrollbar-color: #344b3d #0b100f;
+  scrollbar-width: thin;
+}
+:focus-visible {
+  outline-color: #d4f779;
+}

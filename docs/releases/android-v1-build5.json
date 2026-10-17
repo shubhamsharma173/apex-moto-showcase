@@ -1,0 +1,87 @@
+{
+  "buildId": "ea394946-ef74-4565-9b58-7273ae5ecd80",
+  "buildUrl": "https://expo.dev/accounts/shubhamsharma173/projects/apex-moto/builds/ea394946-ef74-4565-9b58-7273ae5ecd80",
+  "downloadUrl": "https://expo.dev/artifacts/eas/UGNY96V_dMev3rHSRR2G7D6oPZZWS2YPBC1OWu8wuE8.apk",
+  "appSourceCommit": "b5ae5579a2b17a1911f4220279542d8633833319",
+  "bytes": 160690172,
+  "sha256": "171d1affe9d6c487e367a5b77bc282188fb31f9d2772c23e15e4b47f0704ebcd",
+  "lockfileSha256": "d37375767d6623ea1bfd93a81df76b6745545dda34370740e88c4ef1e8d98d8d",
+  "inspection": {
+    "package": "com.apexmoto.app",
+    "version": "1.0.0",
+    "versionCode": "5",
+    "sdk": {
+      "@android:minSdkVersion": "24",
+      "@android:targetSdkVersion": "36"
+    },
+    "debuggable": "false",
+    "permissions": [
+      "android.permission.ACCESS_BACKGROUND_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_LOCATION",
+      "android.permission.INTERNET",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.SYSTEM_ALERT_WINDOW",
+      "android.permission.VIBRATE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_WIFI_STATE",
+      "android.permission.ACTIVITY_RECOGNITION",
+      "com.apexmoto.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"
+    ],
+    "nativeArchitectures": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "embeddedBundle": true,
+    "bundledFonts": "all 5 UI fonts and Ionicons verified by hash",
+    "zipIntegrity": "passed",
+    "mapLibreLibraries": [
+      "lib/arm64-v8a/libmaplibre.so",
+      "lib/armeabi-v7a/libmaplibre.so",
+      "lib/x86/libmaplibre.so",
+      "lib/x86_64/libmaplibre.so"
+    ]
+  },
+  "signatureVerification": {
+    "status": "passed",
+    "tool": "Android SDK apksigner",
+    "certificateSha256": "ec51cb4c0b48be8ab9edf00e8adc175d867e403ce199cac2afa951ff9d38923d",
+    "matchesPriorCertificate": true
+  },
+  "nativeRegression": {
+    "status": "passed",
+    "api": 31,
+    "viewport": "375x812 at 160 dpi",
+    "fontScale": 1.15,
+    "testCommit": "b000142c248b28adac0824187d08e088948999ca",
+    "checks": [
+      "GPS permission and fixes",
+      "location foreground service",
+      "background survival",
+      "pause/resume/finish/save",
+      "keyboard-open first Save tap",
+      "favourite and replay 1x default",
+      "last-screen restoration after process loss",
+      "stable unit-card bounds",
+      "week/all-time explanation",
+      "personal recorded roads",
+      "empty native crash buffer"
+    ]
+  },
+  "ci": {
+    "status": "passed"
+  },
+  "deviceTestStatus": "Physical Realme sensor, Maps-return and extended outdoor/locked-screen retest pending",
+  "publishedRelease": {
+    "status": "published prerelease",
+    "assetVerification": "passed checksum, APK signature and GPS permissions"
+  },
+  "publicationNotice": "Historical private-development build record, retained for provenance. Original private GitHub URLs omitted. No APK contents or original checks were rerun for this public source snapshot."
+}

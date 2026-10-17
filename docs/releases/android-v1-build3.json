@@ -1,0 +1,56 @@
+{
+  "buildId": "88890edd-d66d-41bb-a33b-b6829c6b8b77",
+  "buildUrl": "https://expo.dev/accounts/shubhamsharma173/projects/apex-moto/builds/88890edd-d66d-41bb-a33b-b6829c6b8b77",
+  "downloadUrl": "https://expo.dev/artifacts/eas/D1_OAyz1J3175pBl05kOs64WKd39HK_4FnXDlDOwGW0.apk",
+  "appSourceCommit": "179b3b5ed3191dab9653c069cd494be6a5dd17cb",
+  "bytes": 161150995,
+  "sha256": "207ea984e641874c576d40aeb24d1b14cc368a84cd87b1cbd18bc2b2a6afe317",
+  "lockfileSha256": "acce46d9cc6c70ae9298cbb11be0b77f8156449bca52ce98c062d68efaaacba9",
+  "inspection": {
+    "package": "com.apexmoto.app",
+    "version": "1.0.0",
+    "versionCode": "3",
+    "sdk": {
+      "@android:minSdkVersion": "24",
+      "@android:targetSdkVersion": "36"
+    },
+    "debuggable": "false",
+    "permissions": [
+      "android.permission.ACCESS_BACKGROUND_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_LOCATION",
+      "android.permission.INTERNET",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.SYSTEM_ALERT_WINDOW",
+      "android.permission.VIBRATE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_WIFI_STATE",
+      "android.permission.ACTIVITY_RECOGNITION",
+      "com.apexmoto.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "nativeArchitectures": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "embeddedBundle": true,
+    "bundledFonts": "all 5 UI fonts and Ionicons verified by hash",
+    "zipIntegrity": "passed",
+    "mapLibreLibraries": [
+      "lib/arm64-v8a/libmaplibre.so",
+      "lib/armeabi-v7a/libmaplibre.so",
+      "lib/x86/libmaplibre.so",
+      "lib/x86_64/libmaplibre.so"
+    ]
+  },
+  "deviceTestStatus": "pending physical-device testing",
+  "signatureVerification": {
+    "status": "passed",
+    "tool": "Android SDK apksigner"
+  },
+  "publicationNotice": "Historical private-development build record, retained for provenance. Original private GitHub URLs omitted. No APK contents or original checks were rerun for this public source snapshot."
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-native
+.expo
+.local
+public/vendor
+package-lock.json
+src/data/routes.json
